@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-affinity
+  namespace: test
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      run: nginx
+  template:
+    metadata:
+     labels:
+       run: nginx
+    spec:
+     affinity:
+      nodeAffinity:
+       requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+         - matchExpressions:
+            - key: app
+              operator: In
+              values:
+              - frontend
+     containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: nginx
+

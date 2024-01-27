@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: nginxdep
+ namespace: test
+spec:
+ replicas: 3
+ selector:
+  matchLabels:
+   env: dev
+ template:
+  metadata:
+   labels:
+    env: dev
+  spec:
+   containers:
+    - name: nginx-web01
+      image: nginx:1.17
+      ports:
+       - containerPort: 80
+      livenessProbe:
+       httpGet:
+        path: /
+        port: 80
+       initialDelaySeconds: 5
+       periodSeconds: 5
+       timeoutSeconds: 1
+       failureThreshold: 1
