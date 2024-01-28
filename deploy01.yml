@@ -2,14 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: devab
-  namespace: dev
+  namespace: test
 spec:
- replicas: 3
+ replicas: 4
  selector:
   matchLabels:
    app: nginx
- strategy:
-  type: Recreate
+# strategy:
+#  type: Recreate
  template:
   metadata:
    labels:
@@ -20,6 +20,13 @@ spec:
       image: nginx
       ports:
        - containerPort: 80
-   nodeSelector:
-    gpu: nvidia
+      resources:
+       requests:
+        cpu: "500m"
+        memory: "256Mi"
+#       limits:
+#        cpu: "4"
+#        memory: "4Gi"
+#   nodeSelector:
+#    gpu: nvidia
 
