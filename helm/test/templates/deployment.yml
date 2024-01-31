@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: helm-deploy
+ namespace: test
+spec:
+ replicas: {{ .Values.replicaCount }}
+ selector:
+  matchLabels:
+   app: uat
+ template:
+  metadata:
+   labels:
+    app: uat
+  spec:
+   containers:
+    - name: webapp
+      image: nginx:1.19
+      ports:
+       - containerPort: 80
+
