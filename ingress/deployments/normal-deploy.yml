@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: normal-deploy
+ namespace: uat
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   env: normal
+ template:
+  metadata:
+   labels:
+    env: normal
+  spec:
+   volumes:
+    - name: shared-volume
+      emptyDir: {}
+   initContainers:
+    - name: normal-initcon
+      image: busybox
+      volumeMounts:
+       - name: shared-volume
+         mountPath: /testing
+      command: ['/bin/sh']
+      args: ["-c","echo '<h1>WELCOME TO normal page</h1>' > /testing/index.html"]
+   containers:
+    - name: normal-nginxcon
+      image: nginx
+      volumeMounts:
+       - name: shared-volume
+         mountPath: /usr/share/nginx/html
+      ports:
+       - containerPort: 80
+
+    

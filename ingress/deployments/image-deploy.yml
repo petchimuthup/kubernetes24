@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: image-deploy
+ namespace: uat
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   env: image
+ template:
+  metadata:
+   labels:
+    env: image
+  spec:
+   volumes:
+    - name: shared-volume
+      emptyDir: {}
+   initContainers:
+    - name: image-initcon
+      image: busybox
+      volumeMounts:
+       - name: shared-volume
+         mountPath: /testing
+      command: ['/bin/sh']
+      args: ["-c","echo '<h1>WELCOME TO image page</h1>' > /testing/index.html"]
+   containers:
+    - name: image-nginxcon
+      image: nginx
+      volumeMounts:
+       - name: shared-volume
+         mountPath: /usr/share/nginx/html
+      ports:
+       - containerPort: 80
+
+    

@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: video-deploy
+ namespace: uat
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   env: video
+ template:
+  metadata:
+   labels:
+    env: video
+  spec:
+   volumes:
+    - name: shared-volume
+      emptyDir: {}
+   initContainers:
+    - name: video-initcon
+      image: busybox
+      volumeMounts:
+       - name: shared-volume
+         mountPath: /testing
+      command: ['/bin/sh']
+      args: ["-c","echo '<h1>WELCOME TO video page</h1>' > /testing/index.html"]
+   containers:
+    - name: video-nginxcon
+      image: nginx
+      volumeMounts:
+       - name: shared-volume
+         mountPath: /usr/share/nginx/html
+      ports:
+       - containerPort: 80
+
+    
