@@ -1,0 +1,9 @@
+apiVersion: mydatacenter.com/v1
+kind: Router
+metadata:
+ name: myrouter
+spec:
+ dataCenter: chennai
+ rack: 1
+ type: cisco
+ firmWare: new
