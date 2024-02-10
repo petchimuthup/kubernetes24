@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ namespace: test
+ name: jkdeploy
+spec:
+ replicas: 3
+ selector:
+  matchLabels:
+   env: test
+ template:
+  metadata:
+   labels:
+    env: test
+  spec:
+   containers:
+    - name: webcon
+      image: nginx
+      ports:
+       - containerPort: 80
+      volumeMounts:
+       - name: testvol
+         mountPath: "/tmp/abc"
+         readOnly: yes
+   volumes:
+    - name: testvol
+      configMap: 
+       name: jkcm01
+
