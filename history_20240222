@@ -1,0 +1,1000 @@
+  421  kubectl create -f redis.yml 
+  422  kubectl delete -f redis.yml 
+  423  vi redis.yml 
+  424  kubectl create -f redis.yml 
+  425  ls
+  426  vi web-server.yml 
+  427  kubectl create -f web-server.yml 
+  428  vi web-server.yml 
+  429  kubectl create -f web-server.yml 
+  430  vi web-server.yml 
+  431  kubectl create -f web-server.yml -n test
+  432  kubectl delete pod/web-server-55f57c89d4-dvjtl -n test
+  433  kubectl delete pod/web-server-55f57c89d4-qg6zt -n test
+  434  kubectl delete -f web-server.yml -n test
+  435  vi web-server.yml 
+  436  kubectl create -f web-server.yml
+  437  kubectl delete -f web-server.yml
+  438  vi web-server.yml 
+  439  kubectl create -f web-server.yml
+  440  clear
+  441  watch kubectl get all -n test
+  442  watch kubectl get all -n test -o wide
+  443  clear
+  444  kubectl get all
+  445  kubectl get nodes
+  446  kubectl get all -A
+  447  cd project/
+  448  ls
+  449  clear
+  450  vi initcontainer.yml
+  451  kubectl get all -n uat
+  452  kubectl create -f initcontainer.yml 
+  453  vi initcontainer.yml
+  454  kubectl create -f initcontainer.yml 
+  455  kubectl describe pod/init-deploy-56c475695d-lnwfv -n uat
+  456  df -hT
+  457  clear
+  458  kubectl explain service
+  459  kubectl api-resources | grep service
+  460  kubectl expose deploy init-deploy -n uat --port=80 --target-port=80
+  461  kubectl edit svc init-deploy -n uat
+  462  ip a
+  463  curl http://172.31.37.250:32147
+  464  clear
+  465  watch kubectl get all -n uat -o wide
+  466  clear
+  467  kubectl get all -A
+  468  kubectl get all -n uat
+  469  kubectl delete svc init-deploy -n uat
+  470  cd project/
+  471  vi service.yml
+  472  kubectl create -f service.yml 
+  473  vi service.yml
+  474  kubectl create -f service.yml 
+  475  kubectl create ns metallb-system
+  476  kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/metallb.yaml
+  477  vi configmap.yml
+  478  kubectl create -f configmap.yml 
+  479  vi configmap.yml
+  480  kubectl create -f configmap.yml 
+  481  curl http://172.31.25.10
+  482  cat service.yml 
+  483  cat configmap.yml 
+  484  cat initcontainer.yml 
+  485  kubectl delete all --all -n uat
+  486  exit
+  487  clear
+  488  watch kubectl get all -n uat
+  489  kubectl api-resources
+  490  kubectl api-resources | grep service
+  491  cd project/
+  492  vi initcontainer.yml 
+  493  clear
+  494  watch kubectl get all -n uat
+  495  watch kubectl get all -n metallb-system
+  496  watch kubectl get all -n metallb-system -o wide
+  497  kubectl api-resources | grep configmap
+  498  kubectl get nodes -o wide
+  499  watch kubectl get all -n uat
+  500  exit
+  501  clear
+  502  kubectl get nodes
+  503  cd project/
+  504  ls -l
+  505  kubectl get all -A
+  506  clear
+  507  ls -l
+  508  vi deploy01.yml 
+  509  cd affinity/
+  510  ls -l
+  511  cat redis.yml 
+  512  cat web-server.yml 
+  513  kubectl create -f redis.yml 
+  514  kubectl create -f web-server.yml 
+  515  kubectl delete -f web-server.yml 
+  516  kubectl delete -f redis.yml 
+  517  vi redis.yml 
+  518  kubectl create -f redis.yml 
+  519  vi redis.yml 
+  520  kubectl replace -f redis.yml 
+  521  vi redis.yml 
+  522  kubectl replace -f redis.yml 
+  523  cp redis.yml redis-preferredschedule.yml 
+  524  vi redis-preferredschedule.yml 
+  525  clear
+  526  cd project/
+  527  vi resourcequota/rquota.yml 
+  528  vi deploy01.yml 
+  529  kubectl create -f resourcequota/rquota.yml 
+  530  vi resourcequota/rquota.yml 
+  531  kubectl create -f resourcequota/rquota.yml 
+  532  kubectl create -f deploy01.yml 
+  533  kubectl describe resourcequota -n test
+  534  vi deploy01.yml 
+  535  kubectl replace -f deploy01.yml 
+  536  vi deploy01.yml 
+  537  kubectl replace -f deploy01.yml 
+  538  kubectl describe resourcequota -n test
+  539  exit
+  540  clear
+  541  watch kubectl get all -n test
+  542  cd project/affinity/
+  543  ls
+  544  vi redis-preferredschedule.yml 
+  545  kubectl delete -f redis.yml 
+  546  kubectl create -f redis-preferredschedule.yml 
+  547  vi redis-preferredschedule.yml 
+  548  kubectl create -f redis-preferredschedule.yml 
+  549  vi redis-preferredschedule.yml 
+  550  kubectl create -f redis-preferredschedule.yml 
+  551  vi redis-preferredschedule.yml 
+  552  kubectl create -f redis-preferredschedule.yml 
+  553  vi redis-preferredschedule.yml 
+  554  kubectl create -f redis-preferredschedule.yml 
+  555  kubectl create -f redis.yml 
+  556  kubectl delete -f redis-preferredschedule.yml 
+  557  vi redis-preferredschedule.yml 
+  558  kubectl create -f redis-preferredschedule.yml 
+  559  kubectl create -f redis.yml 
+  560  kubectl describe pod/redis-cache-8478cbdc86-bhqqd -n test
+  561  vi redis.yml 
+  562  kubectl get event -n test --help
+  563  kubectl get event -n test --field-selector redis-cache-8478cbdc86-bhqqd
+  564  kubectl get event -n test --field-selector=redis-cache-8478cbdc86-bhqqd
+  565  kubectl get event -n test --field-selector involvedObject.name=redis-cache-8478cbdc86-bhqqd
+  566  kubectl delete -f redis.yml
+  567  kubectl delete -f redis-preferredschedule.yml
+  568  clear
+  569  cd ..
+  570  mkdir probes
+  571  cd probes/
+  572  vi liveness.yml
+  573  kubectl create -f liveness.yml 
+  574  kubectl exec -it nginxdep-66dbb5fb7-774hk --rm /usr/share/nginx/html/index.html
+  575  kubectl exec -it nginxdep-66dbb5fb7-774hk -- rm /usr/share/nginx/html/index.html
+  576  kubectl exec -it nginxdep-66dbb5fb7-774hk -n test rm /usr/share/nginx/html/index.html
+  577  kubectl exec -it nginxdep-66dbb5fb7-774hk -n test -- rm /usr/share/nginx/html/index.html
+  578  kubectl exec -it nginxdep-66dbb5fb7-774hk -n test 
+  579  kubectl replace -f liveness.yml 
+  580  kubectl delete -f liveness.yml 
+  581  kubectl createe -f liveness.yml 
+  582  kubectl create -f liveness.yml 
+  583  vi liveness.yml 
+  584  kubectl delete -f liveness.yml 
+  585  kubectl create -f liveness.yml 
+  586  kubectl delete -f liveness.yml 
+  587  vi liveness.yml 
+  588  kubectl create -f liveness.yml 
+  589  kubectl delete -f liveness.yml 
+  590  vi liveness.yml 
+  591  kubectl create -f liveness.yml 
+  592  vi liveness.yml 
+  593  kubectl describe pod/nginxdep-66dbb5fb7-fpsc5 -n test
+  594  kubectl delete -f liveness.yml 
+  595  kubectl create -f liveness.yml 
+  596  vi liveness.yml 
+  597  kubectl replace -f liveness.yml 
+  598  kubectl describe pod/nginxdep-5b6b558684-4x7xv -n test
+  599  kubectl describe pod/nginxdep-5b6b558684-8gt4w -n test
+  600  kubectl delete -f liveness.yml 
+  601  mv liveness.yml liveness-exec.yml 
+  602  cp liveness-exec.yml liveness-tcp.yml 
+  603  vi liveness-tcp.yml 
+  604  kubectl create -f liveness-tcp.yml 
+  605  kubectl describe pod/nginxdep-676d8d9db9-lnf2c -n test
+  606  cat liveness-tcp.yml 
+  607  vi liveness-tcp.yml 
+  608  kubectl replace -f liveness-tcp.yml 
+  609  kubectl delete -f liveness-tcp.yml 
+  610  cp liveness-tcp.yml liveness-httpget.yml
+  611  vi liveness-httpget.yml 
+  612  kubectl create -f liveness-httpget.yml 
+  613  kubectl describe pod/nginxdep-565598cc95-5dcdb -n test
+  614  vi liveness-httpget.yml 
+  615  kubectl replace -f liveness-httpget.yml 
+  616  cp liveness-httpget.yml readiness.yml
+  617  vi readiness.yml 
+  618  kubectl delete liveness-httpget.yml 
+  619  ls -l
+  620  kubectl delete deploy nginxdep -n test
+  621  kubectl create -f readiness.yml 
+  622  vi readiness.yml 
+  623  kubectl create -f readiness.yml 
+  624  vi readiness.yml 
+  625  kubectl create -f readiness.yml 
+  626  vi readiness.yml 
+  627  kubectl create -f readiness.yml 
+  628  kubectl describe pod/nginxdep-6497d794cd-9wxhx -n test
+  629  vi readiness.yml 
+  630  kubectl describe pod/nginxdep-6497d794cd-9wxhx -n test
+  631  kubectl delete -f readiness.yml 
+  632  vi readiness.yml 
+  633  kubectl create -f readiness.yml 
+  634  kubectl describe pod/nginxdep-574f565bcf-ghfm9 -n test
+  635  cat readiness.yml 
+  636  vi readiness.yml 
+  637  kubectl replace -f readiness.yml 
+  638  kubectl describe pod/nginxdep-86cfb6597d-bkgvp -n test
+  639  vi readiness.yml 
+  640  kubectl replace -f readiness.yml 
+  641  vi readiness.yml 
+  642  kubectl delete -f readiness.yml 
+  643  kubectl create -f readiness.yml 
+  644  kubectl describe pod/nginxdep-795bc58ff-88b5q -n test
+  645  cp readiness.yml startup.yml
+  646  vi startup.yml 
+  647  kubectl create -f startup.yml 
+  648  kubectl delete -f readiness.yml 
+  649  kubectl create -f startup.yml 
+  650  kubectl describe pod/nginxdep-954b5c7c7-fr9s8 -n test
+  651  cat startup.yml 
+  652  kubectl delete -f startup.yml 
+  653  vi startup.yml 
+  654  kubectl create -f startup.yml 
+  655  kubectl delete -f startup.yml 
+  656  kubectl create -f startup.yml 
+  657  vi startup.yml 
+  658  kubectl delete -f startup.yml 
+  659  kubectl create -f startup.yml 
+  660  kubectl describe pod/nginxdep-579c9f5bcf-h9256 -n test
+  661  cd
+  662  cd .ssh/
+  663  ls
+  664  cat authorized_keys 
+  665  ssh-keygen
+  666  ls
+  667  cat id_rsa.pub 
+  668  cd
+  669  cd project/
+  670  ls
+  671  git init .
+  672  ls
+  673  git status
+  674  git add .
+  675  git status
+  676  git commit -m "k8files"
+  677  git config --global user.email "petchimuthuece12@gmail.com"
+  678  git config --global user.name "petchimuthup"
+  679  git commit -m "k8files"
+  680  git status
+  681  git remote -v
+  682  git branch
+  683  git branch -M main
+  684  git branch
+  685  git remote add origin https://github.com/petchimuthup/kubernetes24.git
+  686  git push -u origin main
+  687  git remote add origin git@github.com:petchimuthup/kubernetes24.git
+  688  git remove rm origin
+  689  git remote rm origin
+  690  git remote -v
+  691  git remote add origin git@github.com:petchimuthup/kubernetes24.git
+  692  git push -u origin main
+  693  kubectl delete deploy nginxdep -n test
+  694  ls
+  695  mkdir resourcequota
+  696  cd resourcequota/
+  697  vi rquota.yml
+  698  kubectl create -f rquota.yml 
+  699  vi rquota.yml
+  700  kubectl create -f rquota.yml 
+  701  vi rquota.yml
+  702  kubectl create -f rquota.yml 
+  703  vi rquota.yml
+  704  kubectl create -f rquota.yml 
+  705  vi rquota.yml
+  706  clear
+  707  ls
+  708  kubectl create -f rquota.yml 
+  709  cd ..
+  710  ls
+  711  vi deploy02.yml 
+  712  vi deploy01.yml 
+  713  kubectl create -f deploy01.yml 
+  714  kubectl describe resourcequota -n test
+  715  kubectl describe deployment.apps/devab -n test
+  716  kubectl delete -f deploy01.yml 
+  717  vi deploy01.yml 
+  718  kubectl create -f deploy01.yml 
+  719  vi deploy01.yml 
+  720  kubectl create -f deploy01.yml 
+  721  vi deploy01.yml 
+  722  kubectl replace -f deploy01.yml 
+  723  vi deploy01.yml 
+  724  kubectl replace -f deploy01.yml 
+  725  cd resourcequota/
+  726  kubectl delete -f rquota.yml 
+  727  cd ..
+  728  kubectl replace -f deploy01.yml 
+  729  clear
+  730  vi deploy01.yml 
+  731  kubectl delete -f deploy01.yml 
+  732  kubectl create -f resourcequota/rquota.yml 
+  733  kubectl create -f deploy01.yml 
+  734  kubectl describe resourcequota -n test
+  735  kubectl delete -f deploy01.yml 
+  736  vi deploy01.yml 
+  737  kubectl  -f deploy01.yml 
+  738  kubectl describe resourcequota -n test
+  739  vi deploy01.yml 
+  740  kubectl replace -f deploy01.yml 
+  741  vi deploy01.yml 
+  742  kubectl replace -f deploy01.yml 
+  743  kubectl delete -f resourcequota/rquota.yml 
+  744  vi resourcequota/rquota.yml 
+  745  kubectl delete -f deploy01.yml 
+  746  kubectl create -f resourcequota/rquota.yml 
+  747  kubectl describe resourcequota -n test
+  748  vi deploy01.yml 
+  749  kubectl create -f deploy01.yml 
+  750  vi deploy01.yml 
+  751  kubectl create -f deploy01.yml 
+  752  kubectl replace -f deploy01.yml 
+  753  kubectl describe resourcequota -n test
+  754  vi deploy01.yml 
+  755  kubectl replace -f deploy01.yml 
+  756  kubectl describe resourcequota -n test
+  757  vi deploy01.yml 
+  758  kubectl replace -f deploy01.yml 
+  759  kubectl describe resourcequota -n test
+  760  cat deploy01.yml 
+  761  kubectl delete -f deploy01.yml 
+  762  kubectl create -f deploy01.yml 
+  763  cat deploy01.yml 
+  764  kubectl describe resourcequota -n test
+  765  kubectl delete -f deploy01.yml 
+  766  kubectl delete -f resourcequota/rquota.yml 
+  767  vi resourcequota/rquota.yml 
+  768  kubectl create -f resourcequota/rquota.yml 
+  769  vi deploy01.yml 
+  770  kubectl create -f deploy01.yml 
+  771  kubectl describe pod/devab-59554f7c67-d9nbj -n test
+  772  kubectl delete -f deploy01.yml 
+  773  vi deploy01.yml 
+  774  kubectl describe resourcequota -n test
+  775  kubectl create -f deploy01.yml 
+  776  kubectl delete -f deploy01.yml 
+  777  vi deploy01.yml 
+  778  kubectl create -f deploy01.yml 
+  779  kubectl delete -f deploy01.yml 
+  780  kubectl delete -f resourcequota/rquota.yml 
+  781  kubectl create -f resourcequota/rquota.yml 
+  782  kubectl create -f deploy01.yml 
+  783  kubectl delete -f deploy01.yml 
+  784  vi deploy01.yml 
+  785  kubectl create -f deploy01.yml 
+  786  kubectl describe resourcequota -n test
+  787  kubectl delete -f deploy01.yml 
+  788  vi deploy01.yml 
+  789  kubectl create -f deploy01.yml 
+  790  vi deploy01.yml 
+  791  kubectl delete -f deploy01.yml 
+  792  vi deploy01.yml 
+  793  kubectl create -f deploy01.yml 
+  794  kubectl delete -f deploy01.yml 
+  795  kubectl delete -f resourcequota/rquota.yml 
+  796  clear
+  797  ls
+  798  clear
+  799  watch kubectl get all -n test
+  800  watch kubectl get all -n test -o wide
+  801  free -h
+  802  watch kubectl get all -n test -o wide
+  803  kubectl describe resourcequota -n test
+  804  watch kubectl get all -n test -o wide
+  805  kubectl describe resourcequota -n test
+  806  watch kubectl get all -n test -o wide
+  807  clear
+  808  kubectl get all
+  809  kubectl get all -n kube-system
+  810  kubectl get nodes
+  811  clear
+  812  cd project/
+  813  kubectl delete deploy01.yml 
+  814  ls
+  815  kubectl delete -f deploy01.yml 
+  816  kubectl delete -f resourcequota/rquota.yml 
+  817  vi resourcequota/rquota.yml 
+  818  vi resourcequota/rquota01.yml 
+  819  vi resourcequota/pod01.yml
+  820  git status
+  821  git add .
+  822  git status
+  823  git commit -m "added devops files"
+  824  git push -u origin main
+  825  mkdir metricsserver
+  826  cd metricsserver/
+  827  vi metrics.yml
+  828  kubectl create -f metrics.yml 
+  829  cd ..
+  830  kubectl create -f deploy01.yml 
+  831  cat deploy01.yml 
+  832  clear
+  833  watch kubectl get all -n test
+  834  kubectl top nodes
+  835  kubectl top pods
+  836  watch kubectl get all -n kube-system
+  837  kubectl get nodes
+  838  kubectl top nodes
+  839  kubectl top pods
+  840  kubectl top pods -n kube-system
+  841  kubectl top pods -n test
+  842  kubectl top pods -n uat
+  843  kubectl get ns
+  844  kubectl top pods -n dev
+  845  kubectl top pods -n dset
+  846  kubectl get all -n test
+  847  kubectl top pods -n test
+  848  kubectl get all -n test -o wide
+  849  watch kubectl top pods -n test
+  850  clear
+  851  apt update
+  852  cd project/
+  853  mkdir hpa
+  854  cd hpa
+  855  vi hpa-deploy.yml
+  856  ls
+  857  kubectl create -f hpa-deploy.yml 
+  858  kubeclt top pods -n test
+  859  kubectl top pods -n test
+  860  kubectl get all -n kube-system
+  861  kubectl top pods -n test
+  862  kubectl autoscale --help
+  863  kubectl autoscale deploy autoscale -n test --min=2 --max=10 --cpu-percent=20 
+  864  kubectl exec -it pod/autoscale-5f9bbdbcb4-jnjtt -n test bash
+  865  kubectl get --help
+  866  kubectl describe horizontalpodautoscaler.autoscaling/autoscale -n test
+  867  kubectl get autoscale -n test
+  868  kubectl get horizontalpodautoscaler -n test
+  869  kubectl get hpa -n test
+  870  ls
+  871  vi hpa-deploy01.yml 
+  872  clear
+  873  watch kubectl get all -n test -o wide
+  874  kubectl delete deploy devab -n test
+  875  watch kubectl get all -n test -o wide
+  876  clear
+  877  kubectl get nodes
+  878  kubectl get pods -A
+  879  kubectl get hpa -n test
+  880  kubectl get all -n test -o wide
+  881  kubectl delete all --all -n test
+  882  kubectl get all -n test -o wide
+  883  clear
+  884  cd project/
+  885  mkdir helm
+  886  cd helm
+  887  helm
+  888  curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+  889  helm
+  890  cd
+  891  helm
+  892  clear
+  893  cd project/helm/
+  894  helm repo add bitnami https://charts.bitnami.com/bitnami
+  895  helm repo list
+  896  helm search hub nginx
+  897  helm repo list
+  898  helm repo update
+  899  helm repo bitnami update
+  900  helm bitnami update
+  901  helm repo --help
+  902  helm repo update
+  903  helm repo list
+  904  helm install nginx-web bitnami/nginx
+  905  kubectl get all
+  906  kubectl describe pod/nginx-web-5d8d5cd7c7-tljdj 
+  907  kubectl edit svc kubernetes
+  908  helm --help
+  909  helm uninstall nginx-web bitnami/nginx
+  910  helm repo list
+  911  helm history
+  912  helm history nginx-web
+  913  helm history bitnami/nginx
+  914  clear
+  915  helm repo list
+  916  helm install myweb bitnami/nginx
+  917  curl -o http://172.31.25.10 
+  918  curl -O http://172.31.25.10 
+  919  curl --help
+  920  wget http://172.31.25.10
+  921  wget http://172.31.25.10/index.html
+  922  curl -I http://172.31.25.10/index.html
+  923  curl -I http://172.31.25.10
+  924  curl -is http://172.31.25.10
+  925  curl --help
+  926  curl -d http://172.31.25.10
+  927  curl -o http://172.31.25.10
+  928  helm repo list
+  929  helm release
+  930  helm release --help
+  931  helm --help
+  932  helm list
+  933  helm uninstall myweb
+  934  helm install myab bitnami/test
+  935  helm list
+  936  helm repo list
+  937  helm install myab bitnami/nginx
+  938  kubectl describe service/myab-nginx 
+  939  kubectl edit svc myab-nginx
+  940  helm list
+  941  helm uninstall myab
+  942  helm chart
+  943  helm install myab bitnami/nginx
+  944  helm chart show myab
+  945  helm --help
+  946  helm show
+  947  helm show char
+  948  helm show chart
+  949  helm show chart myab
+  950  helm show chart bitnami/nginx
+  951  helm show all bitnami/nginx
+  952  clear
+  953  helm show values bitnami/nginx
+  954  clear
+  955  helm show chart bitnami/nginx | less
+  956  kubectl get hpa
+  957  helm create test
+  958  tree test
+  959  apt install tree
+  960  tree test
+  961  ls
+  962  cd test
+  963  ll
+  964  cat Chart.yaml 
+  965  cat values.yaml 
+  966  cd ..
+  967  ls -lrt
+  968  cd test
+  969  ll
+  970  helm install mytest .
+  971  helm repo list
+  972  helm list
+  973  helm uninstall myab
+  974  helm describe pod/mytest-5f79fdd99b-5gdns
+  975  kubectl describe pod/mytest-5f79fdd99b-5gdns
+  976  helm list
+  977  helm repo list
+  978  helm show chart
+  979  helm show chart mytest
+  980  helm show chart mytest/mytest
+  981  helm show chart bitnami/mytest
+  982  clear
+  983  ll
+  984  cat Chart.yaml 
+  985  helm repo remove bitnami
+  986  helm uninstall mytest
+  987  helm install ppm abc/ppm .
+  988  helm install ppm  .
+  989  kubectl describe pod/ppm-test-698c599fcc-jcrzl
+  990  cat Chart.yaml 
+  991  helm uninstall ppm
+  992  ls
+  993  tree
+  994  vi Chart.yaml 
+  995  tree templates/
+  996  cd templates/
+  997  ls -lrt
+  998  rm -rf tests
+  999  rm serviceaccount.yaml service.yaml ingress.yaml hpa.yaml deployment.yaml NOTES.txt 
+ 1000  ls
+ 1001  tree
+ 1002  cd ..
+ 1003  tree
+ 1004  cd templates/
+ 1005  ls
+ 1006  vi deployment.yml
+ 1007  cd ..
+ 1008  helm list
+ 1009  helm repo list
+ 1010  helm install -f Chart.yaml web01 ,
+ 1011  helm install -f Chart.yaml web01 .
+ 1012  vi templates/deployment.yml 
+ 1013  helm install -f Chart.yaml web01 .
+ 1014  helm repo list
+ 1015  helm repo list -n test
+ 1016  helm list -n test
+ 1017  helm install -f Chart.yaml web02 .
+ 1018  vi templates/deployment.yml 
+ 1019  helm install -f Chart.yaml web02 .
+ 1020  helm install -f Chart.yaml web03 .
+ 1021  helm repo list
+ 1022  helm repo list -n test
+ 1023  helm list -n test
+ 1024  helm list
+ 1025  helm uninstal web01 web02
+ 1026  helm uninstall web01 web02
+ 1027  helm uninstall web03
+ 1028  helm install -f Chart.yaml web01 . -n test
+ 1029  helm list
+ 1030  helm list -n test
+ 1031  vi templates/deployment.yml 
+ 1032  helm update web01 -n test
+ 1033  helm update -f Chart.yaml -n test
+ 1034  helm upgrade web01 .
+ 1035  helm upgrade web01 . -n test
+ 1036  helm uninstall web01 -n test
+ 1037  vi values.yaml 
+ 1038  cd ..
+ 1039  ls
+ 1040  mkdir webrelease
+ 1041  helm create webrelease/
+ 1042  ls
+ 1043  cd webrelease/
+ 1044  ls
+ 1045  rm -rf webrelease/
+ 1046  cd ..
+ 1047  rmdir webrelease/
+ 1048  helm create webrelease
+ 1049  ls
+ 1050  tree webrelease
+ 1051  cat webrelease/template/deployment.yml
+ 1052  cd webrelease/
+ 1053  tree
+ 1054  cat templates/deployment.yaml 
+ 1055  cd ..
+ 1056  cd test/
+ 1057  vi templates/deployment.yml 
+ 1058  cat values.yaml 
+ 1059  ls
+ 1060  helm list -n test
+ 1061  helm list
+ 1062  helm install web01 . -n test
+ 1063  helm uninstall web01 -n test
+ 1064  cd ..
+ 1065  clear
+ 1066  git status
+ 1067  git add .
+ 1068  git status
+ 1069  git commit -m "added files"
+ 1070  git status
+ 1071  git push origin main
+ 1072  clear
+ 1073  kubectl get nodes
+ 1074  kubectl get all -n kube-system
+ 1075  kubectl get all -n kube-system -o wide
+ 1076  kubectl get pod -n kube-system -o wide
+ 1077  kubectl get deploy -n kube-system -o wide
+ 1078  kubectl describe deploy metrics-server
+ 1079  kubectl describe deploy metrics-server -n kube-system
+ 1080  kubectl top pods
+ 1081  kubectl top pods -n kube-system
+ 1082  cd project/
+ 1083  ls -lrt
+ 1084  cat daemonset.yml 
+ 1085  cd metricsserver/
+ 1086  ls
+ 1087  cat metrics.yml 
+ 1088  cd ..
+ 1089  ls -lrt
+ 1090  cat service.yml 
+ 1091  cat configmap.yml 
+ 1092  kubectl get all -n metallb-system -o wide
+ 1093  kubectl describe deployment.apps/controller -n metallb-system
+ 1094  kubectl edit deployment.apps/controller -n metallb-system
+ 1095  kubectl describe daemonset.apps/speaker -n metallb-system
+ 1096  kubectl edit daemonset.apps/speaker -n metallb-system
+ 1097  clear
+ 1098  mkdir ingress
+ 1099  cd ingress
+ 1100  cd ..
+ 1101  ls
+ 1102  cp initcontainer.yml ingress/
+ 1103  cd ingress/
+ 1104  ls
+ 1105  mv initcontainer.yml normal-deploy.yml
+ 1106  mkdir deployments
+ 1107  mv normal-deploy.yml deployments/
+ 1108  cd deployments/
+ 1109  vi normal-deploy.yml 
+ 1110  cp normal-deploy.yml video-deploy.yml
+ 1111  vi video-deploy.yml 
+ 1112  vi normal-deploy.yml 
+ 1113  cp video-deploy.yml image-deploy.yml
+ 1114  vi image-deploy.yml 
+ 1115  kubectl create -f normal-deploy.yml
+ 1116  kubectl create -f video-deploy.yml
+ 1117  kubectl create -f image-deploy.yml
+ 1118  kubectl expose deploy normal-deploy -n uat --port=80 --target-port=80
+ 1119  kubectl expose deploy video-deploy -n uat --port=80 --target-port=80
+ 1120  kubectl expose deploy image-deploy -n uat --port=80 --target-port=80
+ 1121  cd ..
+ 1122  helm install nginxingcontrol oci://ghcr.io/nginxinc/charts/nginx-ingress -n uat
+ 1123  curl http://172.31.25.10
+ 1124  ls
+ 1125  vi ingress.yml
+ 1126  kubectl create -f ingress.yml 
+ 1127  vi ingress.yml
+ 1128  kubectl create -f ingress.yml 
+ 1129  vi ingress.yml
+ 1130  kubectl create -f ingress.yml 
+ 1131  vi ingress.yml
+ 1132  kubectl create -f ingress.yml -n uat
+ 1133  vi ingress.yml
+ 1134  kubectl create -f ingress.yml -n uat
+ 1135  vi ingress.yml
+ 1136  kubectl create -f ingress.yml
+ 1137  vi ingress.yml
+ 1138  kubectl create -f ingress.yml
+ 1139  vi ingress.yml
+ 1140  vi ingress.yml 
+ 1141  kubectl create -f ingress.yml 
+ 1142  kubectl delete -f ingress.yml 
+ 1143  vi ingress.yml 
+ 1144  kubectl create -f ingress.yml 
+ 1145  kubectl get ing -n uat
+ 1146  curl normal.example.com
+ 1147  vi /etc/hosts
+ 1148  curl normal.example.com
+ 1149  curl video.example.com
+ 1150  curl image.example.com
+ 1151  kubectl delete all --all -n uat
+ 1152  kubectl delete -f ingress.yml 
+ 1153  cd ..
+ 1154  git status
+ 1155  git add .
+ 1156  git status
+ 1157  git commit -m "added files"
+ 1158  git push origin main
+ 1159  exit
+ 1160  clear
+ 1161  kubectl get all -A
+ 1162  clear
+ 1163  kuectl get all -n uat
+ 1164  kubectl get all -n uat
+ 1165  watch kubectl get all -n uat -o wide
+ 1166  clear
+ 1167  watch kubectl get all -n test
+ 1168  kubectl api-resources | grep configmap
+ 1169  kubectl get cm --all
+ 1170  kubectl get cm -A
+ 1171  kubectl describe cm default
+ 1172  kubectl describe cm kube-root-ca.crt
+ 1173  kubectl create configmap jkcm -n test "app=testing"
+ 1174  kubectl create configmap jkcm -n test --literal "app=testing"
+ 1175  kubectl create configmap --help
+ 1176  kubectl create configmap jkcm -n test --from-literal "app=testing"
+ 1177  kubectl get cm -n test
+ 1178  kubectl describe cm jkcm -n test
+ 1179  cd project/
+ 1180  cd configmap/
+ 1181  vi cmap
+ 1182  kubectl create configmap jkcm01 -n test --from-file=cmap
+ 1183  kubectl describe cm jkcm01 -n test
+ 1184  kubectl get cm -n test
+ 1185  kubectl delete cm jkcm -n test
+ 1186  ls
+ 1187  mv cmap cmap01
+ 1188  cd
+ 1189  clear
+ 1190  watch kubectl get all -n test
+ 1191  echo -n admin | base64
+ 1192  echo -n admin@123 | base64
+ 1193  echo -n root@123 | base64
+ 1194  kubectl get secret -n test
+ 1195  kubectl get all -n test -W
+ 1196  watch kubectl get all -n test 
+ 1197  watch kubectl get crd -n test 
+ 1198  kubectl get api-resources | grep crd
+ 1199  kubectl api-resources | grep crd
+ 1200  kubectl get router 
+ 1201  clear
+ 1202  watch kubectl get router 
+ 1203  clear
+ 1204  kubectl get nodes
+ 1205  cd project/
+ 1206  ls
+ 1207  mkdir pvolume
+ 1208  cd pvolume/
+ 1209  vi pvol.yml
+ 1210  kubectl create -f pvol.yml 
+ 1211  vi pvol.yml
+ 1212  kubectl create -f pvol.yml 
+ 1213  vi pvclaim.yml
+ 1214  kubectl create -f pvclaim.yml 
+ 1215  cd ..
+ 1216  ls
+ 1217  ls -lrt
+ 1218  cd secret/
+ 1219  ls
+ 1220  cat dbsecret.yml 
+ 1221  cat sectest01.yml 
+ 1222  cp sectest01.yml ../pvolume/pvdevploy.yml
+ 1223  cd ../pvolume/
+ 1224  ls
+ 1225  vi pvdevploy.yml 
+ 1226  kubectl create -f pvdevploy.yml 
+ 1227  kubectl logs pod/pvdeploy-94d565fbd-hsm2m -n test
+ 1228  kubectl describe pod/pvdeploy-94d565fbd-hsm2m -n test
+ 1229  cd ..
+ 1230  cd secret/
+ 1231  ls
+ 1232  kubectl create dbsecret.yml 
+ 1233  kubectl create -f dbsecret.yml 
+ 1234  cd ../pvolume/
+ 1235  ls
+ 1236  kubectl replace -f pvdevploy.yml 
+ 1237  kubectl delete -f pvdevploy.yml 
+ 1238  cd ../secret/
+ 1239  ls
+ 1240  cat dbsecret.yml 
+ 1241  cd ../pvolume/
+ 1242  ls
+ 1243  kubectl create -f pvdevploy.yml 
+ 1244  kubectl exec -it pod/pvdeploy-94d565fbd-gc8j7 bash
+ 1245  kubectl exec -it pod/pvdeploy-94d565fbd-gc8j7 bash -n test
+ 1246  kubectl exec -it pod/pvdeploy-94d565fbd-xrv89 bash -n test
+ 1247  kubectl delete pod pod/pvdeploy-94d565fbd-xrv89 -n test
+ 1248  kubectl delete pod/pvdeploy-94d565fbd-xrv89 -n test
+ 1249  kubectl exec -it pod/pvdeploy-94d565fbd-4hvz7 bash -n test
+ 1250  ls
+ 1251  vi pvdevploy.yml 
+ 1252  kubectl exec -it pod/pvdeploy-94d565fbd-4hvz7 bash -n test
+ 1253  cd ..
+ 1254  kubectl delete all -A -n test
+ 1255  kubectl delete all --all -n test
+ 1256  cd secret/
+ 1257  kubectl delete -f dbsecret.yml 
+ 1258  cd ..
+ 1259  mkdir john
+ 1260  cd john/
+ 1261  clear
+ 1262  ls
+ 1263  openssl genrsa -out john.key 2048
+ 1264  ls
+ 1265  openssl req -new -key john.key -out john.csr -subj "/CN=john/O=finance"
+ 1266  ll
+ 1267  cp /etc/kubernetes/pki/ca* .
+ 1268  LL
+ 1269  ll
+ 1270  openssl x509 -req -in john.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out john.crt -days 365
+ 1271  kubectl create ns finance
+ 1272  kubectl config view
+ 1273  cp ~/.kube/config john.kubeconfig
+ 1274  ls
+ 1275  cat john.crt | base64 -w0
+ 1276  cat john.key 
+ 1277  cat john.key | base64 -w0
+ 1278  clear
+ 1279  kubectl get all -n test
+ 1280  kuectl get pv -n test
+ 1281  kubectl get pv -n test
+ 1282  kubectl get pv,pvc -n test
+ 1283  watch kubectl get all -n test
+ 1284  kubectl get secret -n test
+ 1285  watch kubectl get all -n test
+ 1286  watch kubectl get all -n test -o wide
+ 1287  kubectl get pv,pvc -n test
+ 1288  kubectl delete pv,pvc -n test
+ 1289  kubectl delete persistentvolume/dev-pv -n test
+ 1290  kubectl delete persistentvolumeclaim/dev-pvclaim -n test
+ 1291  kubectl delete pv,pvc -n test
+ 1292  kubectl get sc -n test
+ 1293  kubectl get secret -n test
+ 1294  kubectl delete sc -n test
+ 1295  kubectl delete sectest -n test
+ 1296  kubectl delete sc sectest -n test
+ 1297  kubectl get secret -n test
+ 1298  clear
+ 1299  cd project/john/
+ 1300  ls
+ 1301  vi john.kubeconfig 
+ 1302  kubectl --kubeconfig john.kubeconfig get pods
+ 1303  kubectl auth
+ 1304  kubectl auth can-i create pods
+ 1305  kubectl auth can-i create pods --as=john
+ 1306  kubectl auth can-i get pods --as=john
+ 1307  kubeadm certs
+ 1308  kubeadm certs check-expiration
+ 1309  kubectl get cluster-role
+ 1310  kubectl describe clusterrole admin
+ 1311  kubectl describe clusterrole clusteradmin
+ 1312  kubectl describe clusterrole cluster-admin
+ 1313  kubectl create role john-finance --verb=get,list --resource=pods --namespace finance
+ 1314  kubectl get role -n finance
+ 1315  kubectl describe role john-finance -n finance
+ 1316  kubectl describe role john-finance -n finance -o yml
+ 1317  kubectl get role -n finance -o yml
+ 1318  kubectl edit role john-finance -n test
+ 1319  kubectl edit role john-finance -n finance
+ 1320  kubectl create rolebinding john-finance-rolebinding --role=john-finance --user=john --namespace=finance
+ 1321  kubectl get rolebinding -n finance
+ 1322  kubectl get rolebinding -n finance -o yaml
+ 1323  kubectl get role -n finance -o yaml
+ 1324  kubectl --kubeconfig john.kubeconfig can-i create pods --as=john
+ 1325  kubectl --kubeconfig john.kubeconfig get pods -n finance
+ 1326  kubectl auth
+ 1327  kubectl auth can-i create pods --as=john
+ 1328  kubectl auth can-i create pods --as=john -n finance
+ 1329  kubectl auth can-i get pods --as=john -n finance
+ 1330  kubectl auth can-i get pods --as=john
+ 1331  kubectl get role -n finance
+ 1332  kubectl edit role john-finance -n finance
+ 1333  kubectl auth can-i get deployments --as=john -n finance
+ 1334  kubectl auth can-i get deploy --as=john -n finance
+ 1335  kubectl auth can-i create deployments --as=john -n finance
+ 1336  clear
+ 1337  kubectl get nodes
+ 1338  history
+ 1339  cd project/
+ 1340  ls
+ 1341  ls -lrt
+ 1342  cd john/
+ 1343  ls
+ 1344  kubectl create role john-finance --verb=get,list --resource=pods -n finance
+ 1345  kubectl get all -n finance
+ 1346  kubectl get role -n finance
+ 1347  kubectl get rolebinding -n finance
+ 1348  kubectl auth can-i create pods as=john -n finance
+ 1349  kubectl auth can-i create pods --as=john
+ 1350  kubectl auth can-i create pods --as=john -n finance
+ 1351  kubectl auth can-i delete pods --as=john -n finance
+ 1352  kubectl auth can-i delete deployments --as=john -n finance
+ 1353  kubectl auth can-i create deployments --as=john -n finance
+ 1354  kubectl auth can-i create deployment --as=john -n finance
+ 1355  kubectl edit role john-finance -n finance
+ 1356  kubectl edit role john-finance -n finance -o yaml
+ 1357  kubectl edit role john-finance -n finance -o yaml > john-finance-role.yml
+ 1358  clear
+ 1359  cd project/
+ 1360  ls -lrt
+ 1361  cd john/
+ 1362  ls -l
+ 1363  rm test 
+ 1364  kubectl edit role john-finance -n finance
+ 1365  history
+ 1366  pwd
+ 1367  ls
+ 1368  kubectl get ns
+ 1369  cd ..
+ 1370  ls -lrt
+ 1371  vi deploy02.yml 
+ 1372  vi deploy01.yml
+ 1373  vi deploy03.yml
+ 1374  kubectl create -f deploy03.yml 
+ 1375  cp deploy03.yml deploy04.yml
+ 1376  vi deploy04.yml 
+ 1377  kubectl create -f deploy04.yml 
+ 1378  mkdir kim
+ 1379  cd kim
+ 1380  vim fullaccessrole.yml
+ 1381  vim readonlyrole.yml
+ 1382  vim readonly-rolebinding.yml
+ 1383  kubectl config get context
+ 1384  kubectl config get-contexts
+ 1385  kubectl config use-context kubernetes-admin
+ 1386  kubectl config use context kubernetes-admin
+ 1387  kubectl config use-context kubernetes-admin@kubernetes
+ 1388  ls
+ 1389  kubectl create readonlyrole.yml 
+ 1390  kubectl create -f readonlyrole.yml 
+ 1391  vi readonlyrole.yml 
+ 1392  kubectl create -f readonlyrole.yml 
+ 1393  kubectl get role -n test
+ 1394  ls
+ 1395  vi readonly-rolebinding.yml 
+ 1396  kubectl create -f readonly-rolebinding.yml 
+ 1397  kubectl get roles,rolebinding -n test
+ 1398  kubectl config use-context kim-kubernetes
+ 1399  kubectl get all
+ 1400  kubectl delete all
+ 1401  kubectl delete all --all
+ 1402  cd ..
+ 1403  ls
+ 1404  vi deploy04.yml 
+ 1405  cd
+ 1406  cd .kube/users/
+ 1407  ls
+ 1408  openssl genrsa -out ramya.key 2048
+ 1409  openssl req -new -key ramya.key -out ramya.csr -subj "/CN=ramya/O=dev/O=example.org"
+ 1410  ls
+ 1411  openssl x509 -req -CA ca.crt -CAkey ca.key -CAcreateserial -days 730 -in ramya.csr -out ramya.crt
+ 1412  kubectl config set-credentials ramya --client-certificate=/root/.kube/users/ramya.crt --client-key=/root/.kube/users/ramya.key
+ 1413  kubectl config get-contexts
+ 1414  kubectl config set-context ramya-kubernetes --cluster=kubernetes  --user=ramya --namespace=test
+ 1415  kubectl config get-contexts
+ 1416  kubectl config use-context ramya-kubernetes
+ 1417  kubect get all
+ 1418  kubectl get all
+ 1419  cd
+ 1420  history > /root/project/history_20240222
