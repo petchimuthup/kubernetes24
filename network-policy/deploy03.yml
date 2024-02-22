@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: financedevdb
+ namespace: test
+ labels:
+  env: db
+spec:
+ replicas: 3
+ selector:
+  matchLabels:
+   env: db
+ template:
+  metadata:
+   labels:
+    env: db
+  spec:
+   containers:
+    - name: dbcon
+      image: nginx
+      ports:
+       - containerPort: 80

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: testdev
+ namespace: test
+ labels:
+  env: web
+spec:
+ replicas: 3
+ selector:
+  matchLabels:
+   env: web
+ template:
+  metadata:
+   labels:
+    env: web
+  spec:
+   containers:
+    - name: webcon
+      image: nginx
+      ports:
+       - containerPort: 80

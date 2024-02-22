@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: financedev
+ namespace: test
+ labels:
+  env: app
+spec:
+ replicas: 3
+ selector:
+  matchLabels:
+   env: app
+ template:
+  metadata:
+   labels:
+    env: app
+  spec:
+   containers:
+    - name: appcon
+      image: nginx
+      ports:
+       - containerPort: 80
