@@ -5,11 +5,11 @@ metadata:
  namespace: uat
 spec:
  selector:
-   env: dev
+   env: image
  ports:
   - name: initport
     port: 80
     protocol: TCP
     targetPort: 80
- type: LoadBalancer
+ #type: LoadBalancer
   
